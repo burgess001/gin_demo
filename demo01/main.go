@@ -33,7 +33,7 @@ func main() {
 		})
 	})
 	r.DELETE("/book", func(context *gin.Context) {
-		context.JSON(http.StatusAccepted, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"method": "DELETE",
 		})
 	})
