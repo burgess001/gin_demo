@@ -1,0 +1,11 @@
+<h1 style="color:blue"> hello golang </h1>
+<h2> how are you </h2>
+<img id="i1" src="http://imgsrc.baidu.com/forum/w=580/sign=5e73fac5b0b7d0a27bc90495fbee760d/874502087bf40ad1919e5194552c11dfa9ecce0a.jpg" >
+<button  id="b1"> 点我 </button>
+
+<script>
+document.getElementById('b1').onclick=function(){
+    document.getElementById("i1").src='http://imgsrc.baidu.com/forum/w=580/sign=25e8972c79cb0a4685228b315b62f63e/b6dc63d9f2d3572c38c4e90a8813632763d0c3cb.jpg'
+}
+</script>
+
