@@ -1,24 +1,41 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func sayhello(w http.ResponseWriter, r *http.Request) {
-	b, _ := ioutil.ReadFile("./hello.txt")
-
-	//_,_ = fmt.Fprintln(w, "<h1>hello Golang</h1>")
-	_, _ = fmt.Fprintln(w, string(b))
+func sayHello(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "hello golang!",
+	})
+	//c.HTML(code=200, name string, obj interface{})
 }
-func main() {
-	http.HandleFunc("/hello", sayhello)
 
-	err := http.ListenAndServe("127.0.0.1:8000", nil)
-	if err != nil {
-		fmt.Printf("http serve failed ,err:%v", err)
-	}
-	//http.ListenAndServe(addr string, handler http.Handler)
-	//http.HandleFunc(pattern string, handler func(http.ResponseWriter, *http.Request))
+func main() {
+	r := gin.Default() //返回默认的路由引擎
+	r.GET("/hello", sayHello)
+
+	r.GET("/book", func(context *gin.Context) {
+		context.JSON(200, gin.H{
+			"method": "GET",
+		})
+	})
+	r.POST("/book", func(context *gin.Context) {
+		context.JSON(http.StatusCreated, gin.H{
+			"method": "POST",
+		})
+	})
+	r.PUT("/book", func(context *gin.Context) {
+		context.JSON(http.StatusAccepted, gin.H{
+			"method": "PUT",
+		})
+	})
+	r.DELETE("/book", func(context *gin.Context) {
+		context.JSON(http.StatusAccepted, gin.H{
+			"method": "DELETE",
+		})
+	})
+	r.Run(":8000")
 }
