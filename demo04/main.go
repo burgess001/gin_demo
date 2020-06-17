@@ -11,10 +11,10 @@ func f1(w http.ResponseWriter, r *http.Request) {
 	k := func(name string) (string, error) {
 		return name + "年轻又帅气", nil
 	}
-	//定义模版
+	//define template
 	t := template.New("f.tmpl")
 
-	//解析模版
+	//parse template
 	t.Funcs(template.FuncMap{
 		"kua99": k,
 	})
@@ -23,7 +23,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Printf("parse template failed err:%v\n", err)
 	}
-	//渲染模版
+	//rander template
 	name := "小王子"
 	t.Execute(w, name)
 }
