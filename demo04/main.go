@@ -27,7 +27,6 @@ func f1(w http.ResponseWriter, r *http.Request) {
 	name := "小王子"
 	t.Execute(w, name)
 }
-
 func f2(w http.ResponseWriter, r *http.Request) {
 	name := "小公主"
 	t, err := template.ParseFiles("t.tmpl", "ul.tmpl")
